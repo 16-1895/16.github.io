@@ -5,9 +5,9 @@
 1、湍流能谱
 湍流能谱主要展示了湍流中的能量分布情况，大涡具有更高的能量，小涡具有更小的能量，如下图所示。
 
-<img width="440" alt="image" src="https://github.com/16-1895/16-1895.github.io/assets/86237659/76ac49b4-65d6-44a6-a545-ac75e4354c9a"> 
+<img width="440" alt="image" src="https://github.com/16-1895/16-1895.github.io/assets/86237659/76ac49b4-65d6-44a6-a545-ac75e4354c9a">  
 
-[Fluid Mechanics 101](https://www.youtube.com/watch?v=r5vP45_6fB4）)
+[Fluid Mechanics 101](https://www.youtube.com/watch?v=r5vP45_6fB4）) 
 
 其中，$`wave\ number=\frac{2\pi}{d}`$,$`d`$为涡的大小，此图积分即为流场的湍动能。
 
@@ -15,3 +15,15 @@
 
 2、积分尺度$`l_{0}`$
 
+积分尺度代表了当地的涡团大小，这一尺度理论上由湍流能谱平均得到，在实际计算中通常取$`l_{0}=\frac{k^\frac{3}{2}}{\epsilon}`$
+
+3、LES的网格质量
+
+在LES模拟中，网格越细，能够解析的湍流能量越多，结果越准确。为了平衡计算资源与计算精度，通常要求LES模拟能够解析80%的湍动能，剩余的用亚网格模型处理。
+$$k=k_{res}+k_{sgs}$$ 
+$$k_{res}=\frac{1}{2}(UPrime2MeanXX+UPrime2MeanYY+UPrime2MeanZZ)$$  
+$$k_{sgs}=(\frac{\mu_{sgs}}{\rho l_{sgs}})^2$$  
+$`l_{sgs}`$ 为亚网格尺度
+$$l_{sgs}=C_s*({CellVolume})^3$$   
+
+一种简单的网格质量评价准则就是，积分尺度大于等于网格尺寸的5倍，则大概率LES解析尺度满足精度要求。
